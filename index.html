@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Giorgo ♥️</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+}
+
+/* FIRST PAGE - LIGHT BLUE */
+#firstPage {
+    background: linear-gradient(135deg, #dbeeff, #eef6ff);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SECOND PAGE - LIGHT PURPLE */
+#secondPage {
+    display: none;
+    background: linear-gradient(135deg, #efe7f7, #d9c9f2);
+    color: #705699;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* TEXT */
+h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* BUTTON (smaller) */
+button {
+    margin-top: 15px;
+    border: 1.5px solid #705699;
+    background: white;
+    color: #705699;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* IMAGE */
+img {
+    width: 110px;
+    margin-bottom: 15px;
+}
+
+/* CENTER MESSAGE */
+.message {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* FLOATING EMOJIS */
+.floating {
+    position: absolute;
+    bottom: -50px;
+    font-size: 18px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* HEARTS */
+.heart {
+    position: absolute;
+    font-size: 14px;
+    animation: fade 2s ease-in-out forwards;
+}
+
+@keyframes fade {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST PAGE -->
+<div id="firstPage">
+
+    
+    <img https://wallpapers.com/images/featured-full/hearts-k8wytbbbeozl3s73.jpg">
+
+    <p>if your name is Giorgos, press the button</p>
+    <button onclick="showLove()">♥️</button>
+</div>
+
+<!-- SECOND PAGE -->
+<div id="secondPage">
+    <div class="message">
+        <h1>I love you so much ♥️</h1>
+        <p>you make everything feel lighter 🌸</p>
+        <p id="counter"></p>
+    </div>
+
+    <audio id="music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b9f8b.mp3?filename=lofi-love-112191.mp3">
+    </audio>
+</div>
+
+<script>
+function showLove() {
+    document.getElementById("firstPage").style.display = "none";
+    document.getElementById("secondPage").style.display = "block";
+
+    document.getElementById("music").play();
+
+    const emojis = ["💗","🌸","✨","🥰","😘"];
+
+    for (let i = 0; i < 35; i++) {
+        let e = document.createElement("div");
+        e.className = "floating";
+        e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        e.style.left = Math.random() * 100 + "vw";
+        e.style.animationDuration = (3 + Math.random() * 2) + "s";
+        document.getElementById("secondPage").appendChild(e);
+    }
+
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "♥️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+        document.getElementById("secondPage").appendChild(heart);
+
+        setTimeout(() => heart.remove(), 2000);
+    }, 300);
+
+    const startDate = new Date("2025-05-08");
+    const today = new Date();
+    const diffTime = today - startDate;
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    document.getElementById("counter").innerText =
+        days + " days and counting ♥️";
+}
+</script>
+
+</body>
+</html>
